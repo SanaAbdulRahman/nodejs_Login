@@ -8,6 +8,9 @@ router.get('/', function(req, res, next) {
 router.get('/signup', function(req, res, next) {
   res.render('signup');
 });
-
+router.post('/signup',(req,res)=>{
+  res.send('CReated new account')
+  console.log(req.body);
+})
 
 module.exports = router;
