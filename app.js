@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var db=require('./config/connection');
+
 var loginRouter = require('./routes/login');
 //var signupRouter = require('./routes/signup');
 
@@ -18,6 +20,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+db.connect((err)=>{
+  if(err){
+    console.log("Connection error"+err);
+  
+  }
+  else
+  {
+    console.log("Database connected to the port 27017");
+  }
+})
+
 
 app.use('/', loginRouter);
 //app.use('/signup', signupRouter);
